@@ -16,6 +16,7 @@
 
 import hashlib
 import json
+import math
 import os
 import random
 import warnings
@@ -299,7 +300,7 @@ class Oracle(stateful.Stateful):
         trials = [
             t
             for t in self.trials.values()
-            if t.status == trial_lib.TrialStatus.COMPLETED
+            if t.status == trial_lib.TrialStatus.COMPLETED and not math.isnan(t.score)
         ]
 
         sorted_trials = sorted(
